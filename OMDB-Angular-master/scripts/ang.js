@@ -25,7 +25,7 @@ var app = angular.module('omdb', []);
 
 app.controller('MovieController', function($scope, $http){
   this.movieSearch = '';
-  this.apiKey = 'https://www.omdbapi.com/?i=tt3896198&apikey=d0b1a674'; // Replace 'YOUR_API_KEY' with your actual API key
+  this.apiKey = ''; 
   
   this.formAction = function() {
     console.log("Form action called");
