@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="omdb">
+<head>
+  <meta charset="utf-8">
+  <title>OMDB Angular App</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet\angStyle.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
+  <!-- links to jquery and angular from Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <!--  links to angular and jquery files-->
+  <script src="./scripts/ang.js"></script>
+  <script src="./scripts/jquery.js"></script>
+</head>
+<body>
+  <div class='search'>
+    <form ng-submit='movieCtrl.formAction()'>
+      <input type="text" placeholder="Enter movie name" class="movie-title" ng-keypress="movieCtrl.formAction()" ng-model='movieCtrl.movieSearch'>
+      <button type="submit" id="submit">Find your movie!</button>
+    </form>
+  </div>
+
+  <div ng-show="movieCtrl.movieSearch" id="movieDivs">
+    <!-- Display list of movies from search -->
+    <div id='movieList'>
+      <h3>Results for: <span ng-bind="movieCtrl.movieSearch"></span></h3>
+      <div ng-repeat="movie in movieCtrl.movies" class="movieInList">
+        <li ng-click="movieCtrl.movieSelect(movie.imdbID)">{{movie.Title}} ({{movie.Year}})</li>
+      </div>
+    </div>
+    <!-- Display Individual movie data -->
+    <div ng-show="movieCtrl.movie" id='movieInfo'>
+      <img ng-src="{{movieCtrl.movie.Poster}}" alt="Movie Poster">
+      <div>
+        <span class="title">{{movieCtrl.movie.Title}}</span>
+        <span>({{movieCtrl.movie.Year}})</span>
+        <p><span>{{movieCtrl.movie.Rated}}</span> | <span>{{movieCtrl.movie.Runtime}}</span> | <span>{{movieCtrl.movie.Genre}}</span> | <span>{{movieCtrl.movie.Released}}</span></p>
+        <p ng-bind='movieCtrl.movie.Actors'></p>
+        <p ng-bind='movieCtrl.movie.Plot'></p>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>
